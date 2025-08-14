@@ -1,0 +1,348 @@
+.achievements {
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    h2 {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+  }
+
+  &__title-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--accent-gold);
+  }
+
+  &__progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__progress-text {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+  }
+
+  &__progress-bar {
+    width: 200px;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--accent-gold),
+      var(--accent-orange)
+    );
+    border-radius: 4px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.achievement-card {
+  position: relative;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &--unlocked {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  &__unlock-icon,
+  &__lock-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.25rem;
+    border-radius: 50%;
+  }
+
+  &__unlock-icon {
+    color: var(--accent-gold);
+    background: var(--bg-primary);
+  }
+
+  &__lock-icon {
+    color: var(--text-muted);
+    background: var(--bg-primary);
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__description {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  &__reward {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__reward-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--accent-gold);
+  }
+
+  &__reward-text {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+  }
+
+  &__unlocked-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  &__rarity {
+    margin-top: 0.5rem;
+  }
+
+  &__rarity-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--bg-tertiary);
+  }
+
+  &__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 215, 0, 0.1) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+}
+
+.achievement-icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--accent-gold);
+}
+
+.achievement-icon-text {
+  font-size: 2rem;
+}
+
+// Modal styles
+.achievement-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.achievement-modal {
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &__content {
+    margin-bottom: 2rem;
+  }
+
+  &__description {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  &__reward {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 0.5rem;
+  }
+
+  &__reward-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--accent-gold);
+  }
+
+  &__reward-text {
+    color: var(--accent-gold);
+    font-weight: 600;
+  }
+
+  &__unlocked,
+  &__locked {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  &__unlocked {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--accent-green);
+  }
+
+  &__locked {
+    background: rgba(156, 163, 175, 0.1);
+    color: var(--text-muted);
+  }
+
+  &__unlocked-icon,
+  &__locked-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &__close {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .achievements {
+    padding: 1rem;
+
+    &__header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    &__progress {
+      width: 100%;
+    }
+
+    &__progress-bar {
+      flex: 1;
+    }
+  }
+
+  .achievements__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-modal {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
